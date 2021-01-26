@@ -1,5 +1,4 @@
 import React from 'react';
-import { MdSettings } from 'react-icons/md';
 import ProfilePicture from '../../ProfilePicture';
 import { Container, Settings } from './styles';
 

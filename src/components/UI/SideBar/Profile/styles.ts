@@ -15,7 +15,7 @@ export const Settings = styled(MdSettings)<MdSettingsProps>`
   color: ${(props) => (props.selected ? '#FFD369' : '#888B8F')};
   font-size: 28px;
   position: absolute;
-  right: 22px;
+  right: 0px;
 `;
 
 export default {};

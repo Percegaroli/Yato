@@ -10,5 +10,6 @@ export default createGlobalStyle`
   body {
     background: #121214;
     color: #ACACAC;
+    font-family: "Montserrat", sans-serif;
   }
 `;
