@@ -1,9 +1,5 @@
 import styled from 'styled-components';
-import { MdSettings } from 'react-icons/md';
-
-interface MdSettingsProps {
-  selected?: boolean
-}
+import SettingsIcon from '../../SettingsIcon';
 
 export const Container = styled.div`
   display: flex;
@@ -11,9 +7,7 @@ export const Container = styled.div`
   position: relative;
 `;
 
-export const Settings = styled(MdSettings)<MdSettingsProps>`
-  color: ${(props) => (props.selected ? '#FFD369' : '#888B8F')};
-  font-size: 28px;
+export const Settings = styled(SettingsIcon)`
   position: absolute;
   right: 0px;
 `;

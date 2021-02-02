@@ -1,14 +1,15 @@
 import React from 'react';
-import { Card, GroupImage, GroupName } from './styles';
+import { Card, GroupName } from './styles';
 import { GroupProps } from '../../interfaces/GroupProps';
 import QuantityBullet from '../QuantityBullet';
+import GroupImage from '../GroupImage';
 
 const GroupCard: React.FC<GroupProps> = (props: GroupProps) => {
   const {
     image, name, newMessages,
   } = props;
   const {
-    alt, height, src, width,
+    alt, src,
   } = image;
 
   const renderQuantityBullet = () => (newMessages > 0
@@ -21,8 +22,8 @@ const GroupCard: React.FC<GroupProps> = (props: GroupProps) => {
       <GroupImage
         src={src}
         alt={alt}
-        width={width}
-        height={height}
+        width={50}
+        height={50}
       />
       <GroupName>
         {name}

@@ -7,8 +7,6 @@ const sulplast = {
   image: {
     src: '/images/image-analysis.png',
     alt: 'aaaa',
-    height: 50,
-    width: 50,
   },
   name: 'Sulplast',
   newMessages: 0,
