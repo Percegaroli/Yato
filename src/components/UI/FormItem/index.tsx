@@ -5,7 +5,7 @@ import { InputItemProps } from './interface';
 
 const FormItem = <T extends string | number>(props: InputItemProps<T>): React.ReactElement => {
   const {
-    label, value, onChange, placeholder, inputClassName, labelClassName,
+    label, value, onChange, placeholder, inputClassName, labelClassName, type,
   } = props;
   return (
     <Container>
@@ -17,6 +17,7 @@ const FormItem = <T extends string | number>(props: InputItemProps<T>): React.Re
         onChange={onChange}
         placeholder={placeholder}
         className={inputClassName}
+        type={type}
       />
     </Container>
   );
@@ -25,6 +26,7 @@ const FormItem = <T extends string | number>(props: InputItemProps<T>): React.Re
 FormItem.defaultProps = {
   inputClassName: '',
   labelClassName: '',
+  type: 'text',
 };
 
 export default FormItem;

@@ -16,7 +16,7 @@ const Form: React.FC<Props> = (props: Props) => {
 
   const renderFormItems = () => itens.map((item) => {
     const {
-      label, onChange, placeholder, value, inputClassName, labelClassName,
+      label, onChange, placeholder, value, inputClassName, labelClassName, type,
     } = item;
     return (
       <FormItem
@@ -27,6 +27,7 @@ const Form: React.FC<Props> = (props: Props) => {
         inputClassName={inputClassName}
         labelClassName={labelClassName}
         key={`${title}-${label}`}
+        type={type}
       />
     );
   });

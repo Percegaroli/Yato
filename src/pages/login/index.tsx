@@ -1,14 +1,14 @@
 import React from 'react';
 import Head from 'next/head';
-import LoginPage from '../../components/Login/Page';
+import Authentication from '../../components/Authentication/Page';
 
-const Login:React.FC<null> = () => (
+const AuthenticationPage:React.FC<null> = () => (
   <>
     <Head>
       <title>Yato Chat - Login</title>
     </Head>
-    <LoginPage />
+    <Authentication />
   </>
 );
 
-export default Login;
+export default AuthenticationPage;

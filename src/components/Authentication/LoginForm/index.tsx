@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 import Form from '../../UI/Form';
+import { LoginForm } from '../../../interfaces/LoginForm';
 
-interface LoginState {
-  email: string,
-  senha: string,
-}
-
-const initialState: LoginState = {
+const initialState: LoginForm = {
   email: '',
-  senha: '',
+  password: '',
 };
 
-const LoginForm: React.FC = () => {
-  const [loginFormState, setLoginFormState] = useState<LoginState>(initialState);
+const Login: React.FC = () => {
+  const [loginFormState, setLoginFormState] = useState<LoginForm>(initialState);
 
-  const alterarValorInput = (campo: keyof LoginState, valor: string) => {
+  const alterarValorInput = (campo: keyof LoginForm, valor: string) => {
     setLoginFormState({
       ...loginFormState,
       [campo]: valor,
@@ -35,9 +31,10 @@ const LoginForm: React.FC = () => {
         },
         {
           label: 'Senha',
-          onChange: (event) => alterarValorInput('senha', event.target.value),
+          onChange: (event) => alterarValorInput('password', event.target.value),
           placeholder: '***************',
-          value: loginFormState.senha,
+          value: loginFormState.password,
+          type: 'password',
         },
       ]}
       buttonProps={{
@@ -48,4 +45,4 @@ const LoginForm: React.FC = () => {
   );
 };
 
-export default LoginForm;
+export default Login;

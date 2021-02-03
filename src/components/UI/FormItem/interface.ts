@@ -4,5 +4,6 @@ export interface InputItemProps<T> {
   placeholder: string
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
   inputClassName?: string,
-  labelClassName?: string
+  labelClassName?: string,
+  type?: 'text' | 'password'
 }

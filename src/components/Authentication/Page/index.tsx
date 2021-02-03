@@ -4,7 +4,7 @@ import SignUpForm from '../SignUpForm';
 import LoginForm from '../LoginForm';
 import Divisor from '../../UI/Divisor';
 
-const Login: React.FC = () => (
+const Authentication: React.FC = () => (
   <Container>
     <Card>
       <LoginForm />
@@ -14,4 +14,4 @@ const Login: React.FC = () => (
   </Container>
 );
 
-export default Login;
+export default Authentication;
