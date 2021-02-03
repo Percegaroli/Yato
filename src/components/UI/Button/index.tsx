@@ -1,13 +1,8 @@
 import React from 'react';
 import { ButtonComponent } from './style';
+import { ButtonProps } from './interface';
 
-interface Props {
-  text: string
-  onClick?: () => void,
-  className?: string
-}
-
-const Button: React.FC<Props> = (props: Props) => {
+const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
   const { text, onClick, className } = props;
   return (
     <ButtonComponent
