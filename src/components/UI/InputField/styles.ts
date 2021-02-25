@@ -6,6 +6,10 @@ export const Input = styled.input`
   width: 100%;
   border: none;
   padding: 14px 12px;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 export default {};

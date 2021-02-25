@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 import Form from '../../UI/Form';
 import { createAccount } from '../../../service/autenticacao';
 import { NewUserForm } from '../../../interfaces/NewUserForm';
 import { signUpValidation } from '../../../dataValidation/form';
+import { mapearRespostaApiRedux } from '../../../service/autenticacao/mapearRespostaAPI';
+import { loadChatrooms } from '../../../redux/Chatrooms/action';
+import { changeUserState } from '../../../redux/User/action';
+import { salvarDadoLocalStorage } from '../../../config/localStorage';
+import { LocalStorageFields } from '../../../enum/localStorage/fields';
 
 const initialState: NewUserForm = {
   email: '',
@@ -13,6 +20,8 @@ const initialState: NewUserForm = {
 
 const SignUpForm: React.FC = () => {
   const [SignUpFormState, setSignUpFormState] = useState<NewUserForm>(initialState);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const alterarValorInput = (campo: keyof NewUserForm, valor: string) => {
     setSignUpFormState({
@@ -37,11 +46,21 @@ const SignUpForm: React.FC = () => {
   const criarConta = async () => {
     if (validarCampos()) {
       try {
-        await createAccount(SignUpFormState);
+        const response = await createAccount(SignUpFormState);
+        const { data } = response;
+        const [userState, chatroomState] = mapearRespostaApiRedux(data);
+        dispatch(loadChatrooms(chatroomState));
+        dispatch(changeUserState(userState));
+        salvarTokenLocalStorage(data.token);
+        router.push('/');
       } catch (error) {
         console.log('não implementado');
       }
     }
+  };
+
+  const salvarTokenLocalStorage = (token: string) => {
+    salvarDadoLocalStorage(LocalStorageFields.token, token);
   };
 
   return (

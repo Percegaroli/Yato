@@ -1,26 +1,43 @@
-import React from 'react';
+import React, { memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '../../Button';
 import GroupList from '../GroupList';
 import { Container } from './styles';
+import { StoreState } from '../../../../redux/interface';
+import { selectChatroom } from '../../../../redux/Chatrooms/action';
 
-const sulplast = {
-  image: {
-    src: '/images/image-analysis.png',
-    alt: 'aaaa',
-    height: 50,
-    width: 50,
-  },
-  name: 'Sulplast',
-  newMessages: 0,
+const UserGroups: React.FC = () => {
+  const { ChatroomsReducer } = useSelector((state: StoreState) => state);
+  const dispatch = useDispatch();
+
+  const alterarChatroomSelecionado = (index: number) => {
+    dispatch(selectChatroom(index));
+  };
+
+  const createChatroomsResume = () => {
+    const defaultImage = '/images/image-analysis.png';
+    const imageSize = 50;
+    return ChatroomsReducer.chatrooms.map((chatroom, index) => ({
+      name: chatroom.name,
+      newMessages: chatroom.newMessages,
+      image: {
+        src: chatroom.photo ?? defaultImage,
+        alt: `${chatroom.name} image`,
+        height: imageSize,
+        width: imageSize,
+      },
+      onClick: () => alterarChatroomSelecionado(index),
+    }));
+  };
+
+  return (
+    <Container>
+      <Button text="Novo Grupo" />
+      <GroupList
+        groups={createChatroomsResume()}
+      />
+    </Container>
+  );
 };
 
-const UserGroups: React.FC = () => (
-  <Container>
-    <Button text="Novo Grupo" />
-    <GroupList
-      groups={[sulplast, sulplast, sulplast, sulplast]}
-    />
-  </Container>
-);
-
-export default UserGroups;
+export default memo(UserGroups);

@@ -16,6 +16,7 @@ const GroupList: React.FC<Props> = (props: Props) => {
       image={group.image}
       name={group.name}
       newMessages={group.newMessages}
+      onClick={group.onClick}
     />
   ));
   return (

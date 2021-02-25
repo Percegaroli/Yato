@@ -5,7 +5,7 @@ import QuantityBullet from '../QuantityBullet';
 
 const GroupCard: React.FC<GroupProps> = (props: GroupProps) => {
   const {
-    image, name, newMessages,
+    image, name, newMessages, onClick,
   } = props;
   const {
     alt, height, src, width,
@@ -17,7 +17,9 @@ const GroupCard: React.FC<GroupProps> = (props: GroupProps) => {
   );
 
   return (
-    <Card>
+    <Card
+      onClick={onClick}
+    >
       <GroupImage
         src={src}
         alt={alt}
