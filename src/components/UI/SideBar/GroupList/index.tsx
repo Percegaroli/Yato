@@ -12,9 +12,11 @@ const GroupList: React.FC<Props> = (props: Props) => {
 
   const renderGroups = () => groups.map((group) => (
     <GroupCard
+      key={group.name}
       image={group.image}
       name={group.name}
       newMessages={group.newMessages}
+      onClick={group.onClick}
     />
   ));
   return (

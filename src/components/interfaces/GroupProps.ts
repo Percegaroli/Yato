@@ -4,4 +4,5 @@ export interface GroupProps {
   image: ImageProps,
   name: string,
   newMessages: number;
+  onClick: () => void;
 }
