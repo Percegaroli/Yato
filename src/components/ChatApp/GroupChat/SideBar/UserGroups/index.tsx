@@ -1,10 +1,10 @@
 import React, { memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Button from '../../Button';
+import Button from '../../../../UI/Button';
 import GroupList from '../GroupList';
 import { Container } from './styles';
-import { StoreState } from '../../../../redux/interface';
-import { selectChatroom } from '../../../../redux/Chatrooms/action';
+import { StoreState } from '../../../../../redux/interface';
+import { selectChatroom } from '../../../../../redux/Chatrooms/action';
 
 const UserGroups: React.FC = () => {
   const { ChatroomsReducer } = useSelector((state: StoreState) => state);
@@ -32,7 +32,9 @@ const UserGroups: React.FC = () => {
 
   return (
     <Container>
-      <Button text="Novo Grupo" />
+      <Button
+        text="Novo Grupo"
+      />
       <GroupList
         groups={createChatroomsResume()}
       />

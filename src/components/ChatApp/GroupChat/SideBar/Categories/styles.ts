@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { MdPerson, MdGroup, MdPowerSettingsNew } from 'react-icons/md';
-import { IconInterface } from '../../../interfaces/IconInterface';
+import { IconInterface } from '../../../../interfaces/IconInterface';
 
 export const Container = styled.div`
   display: flex;

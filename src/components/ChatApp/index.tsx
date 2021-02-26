@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { decode } from 'jsonwebtoken';
 import socket from '../../config/socket';
 import { Container } from './styles';
-import SideBar from '../UI/SideBar';
+import SideBar from './GroupChat/SideBar';
 import ActiveWindowContainer from '../UI/ActiveWindowContainer';
 import PrivateRoute from '../Route/PrivateRoute';
 import GroupChat from './GroupChat';

@@ -1,6 +1,6 @@
 import React from 'react';
-import { GroupProps } from '../../../interfaces/GroupProps';
-import GroupCard from '../../GroupCard';
+import { GroupProps } from '../../../../interfaces/GroupProps';
+import GroupCard from '../../../../UI/GroupCard';
 import { Container } from './styles';
 
 interface Props {

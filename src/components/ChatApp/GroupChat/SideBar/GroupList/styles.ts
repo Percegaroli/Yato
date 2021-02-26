@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Card } from '../../GroupCard/styles';
+import { Card } from '../../../../UI/GroupCard/styles';
 
 export const Container = styled.div`
   margin-top: 20px;
