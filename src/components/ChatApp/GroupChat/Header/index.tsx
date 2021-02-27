@@ -5,14 +5,17 @@ import {
 } from './styles';
 import Menu from './Menu';
 import { StoreState } from '../../../../redux/interface';
+import UseFullDate from '../../../../hooks/UseFullDate';
 
 const Header = (): ReactElement => {
-  const { chatrooms, selectedChatroomIndex } = useSelector(
-    (state: StoreState) => state.ChatroomsReducer,
+  const { ChatroomsReducer, UserReducer } = useSelector(
+    (state: StoreState) => state,
   );
+  const { chatrooms, selectedChatroomIndex } = ChatroomsReducer;
   const selectedChatroom = chatrooms[selectedChatroomIndex];
-  const { name, photo } = selectedChatroom;
-  const memberSince = new Date().toString();
+  const { name, photo, members } = selectedChatroom;
+  const thisUser = members.find((member) => member.id === UserReducer.id);
+  const joinDate = UseFullDate(new Date(thisUser.memberSince));
 
   return (
     <Container>
@@ -27,7 +30,9 @@ const Header = (): ReactElement => {
             {name}
           </GroupName>
           <MemberSince>
-            {memberSince}
+            Membro desde
+            {' '}
+            {joinDate}
           </MemberSince>
         </DescriptionContainer>
       </GroupInfoContainer>

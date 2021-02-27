@@ -1,4 +1,5 @@
 import React from 'react';
+import UseFullDate from '../../../../hooks/UseFullDate';
 import {
   Container, InfoContainer, PhotoContainer, Photo, MessageContainer, MessageLine, Name, SendAt,
 } from './styles';
@@ -17,6 +18,7 @@ interface Props {
 const Message = (props: Props) => {
   const { lines, sendAt, user } = props;
   const { name, photo } = user;
+  const messageDate = UseFullDate(new Date(sendAt), { withHours: true });
 
   const renderUserInfo = () => (
     <InfoContainer>
@@ -24,10 +26,9 @@ const Message = (props: Props) => {
         {name}
       </Name>
       <SendAt>
-        {sendAt.toString()}
+        {messageDate}
       </SendAt>
     </InfoContainer>
-
   );
 
   const renderLines = () => lines.map((line) => (

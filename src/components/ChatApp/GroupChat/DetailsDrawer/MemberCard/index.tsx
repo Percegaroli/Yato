@@ -4,12 +4,14 @@ import {
   MemberInfo,
   Name,
   SubtitleContainer,
-  Date,
+  Date as Data,
   MemberProfile,
+  BadgeContainer,
 } from './styles';
 import { Roles } from '../../../../../enum/Group/Roles';
 import ProfilePicture from '../../../../UI/ProfilePicture';
 import RoleBadge from '../../../../UI/RoleBadge';
+import UseFullDate from '../../../../../hooks/UseFullDate';
 
 interface Props {
   photo: string,
@@ -22,19 +24,30 @@ const MemberCard: React.FC<Props> = (props: Props) => {
   const {
     photo, fullName, memberSince, role,
   } = props;
+  const fullDate = UseFullDate(new Date(memberSince));
 
   const renderRoleBadge = () => (role ? (
-    <RoleBadge
-      role={role}
-    />
+    <BadgeContainer>
+      <RoleBadge
+        role={role}
+      />
+    </BadgeContainer>
   ) : <></>);
+
+  const renderizarData = () => (
+    <Data>
+      Desde
+      {' '}
+      {fullDate}
+    </Data>
+  );
 
   return (
     <Card>
       <ProfilePicture
         height={76}
         width={76}
-        src={photo}
+        src={photo || '/images/image-analysis.png'}
         alt={`${fullName} profile picture`}
       />
       <MemberInfo>
@@ -43,9 +56,7 @@ const MemberCard: React.FC<Props> = (props: Props) => {
           {fullName}
         </Name>
         <SubtitleContainer>
-          <Date>
-            {memberSince}
-          </Date>
+          {renderizarData()}
           <MemberProfile>
             Ver Perfil
           </MemberProfile>
