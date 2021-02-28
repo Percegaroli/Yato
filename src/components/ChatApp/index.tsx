@@ -24,7 +24,6 @@ const ChatApp: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    ouvirEventosSocket();
     const token = recuperarDadoLocalStorage(LocalStorageFields.token);
     if (!id && token) {
       if (isTokenExpirado(token)) {
@@ -34,6 +33,10 @@ const ChatApp: React.FC = () => {
       }
     }
   }, []);
+
+  useEffect(() => {
+    ouvirNovasMensagens();
+  }, [ChatroomsReducer.chatrooms.length]);
 
   const carregarDados = async (token: any) => {
     try {
@@ -47,16 +50,15 @@ const ChatApp: React.FC = () => {
     }
   };
 
-  const ouvirEventosSocket = () => {
-    socket.on(Events.NEW_MESSAGE, adicionarMensagemRecebidaRedux);
+  const ouvirNovasMensagens = () => {
+    socket.off(Events.CLIENT_RECEIVE_NEW_MESSAGE);
+    socket.on(Events.CLIENT_RECEIVE_NEW_MESSAGE, adicionarMensagemRecebidaRedux);
   };
 
   const adicionarMensagemRecebidaRedux = (mensagem: NewMessageReceivedParameters) => {
     const chatroomNovaMensagem = ChatroomsReducer.chatrooms.find(
       (chatroom) => chatroom.id === mensagem.room_id,
     );
-    console.log(ChatroomsReducer);
-    console.log(chatroomNovaMensagem, mensagem);
     const novasMensagens = mapearNovasMensagensRedux([...chatroomNovaMensagem.messages], [{
       date: new Date(),
       message: mensagem.message,

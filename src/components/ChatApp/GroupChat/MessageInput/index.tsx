@@ -23,7 +23,7 @@ const MessageInput: React.FC = () => {
   };
 
   const dispararEventoNovaMensagem = () => {
-    socket.emit(Events.NEW_MESSAGE, {
+    socket.emit(Events.CLIENT_SEND_NEW_MESSAGE, {
       room_id: chatrooms[selectedChatroomIndex].id,
       user_id: UserReducer.id,
       message,

@@ -2,13 +2,7 @@ import { ChatroomsState } from './interface';
 import { ChatroomsActionTypes } from './actionTypes';
 
 const initialState: ChatroomsState = {
-  chatrooms: [{
-    members: [],
-    messages: [],
-    name: '',
-    newMessages: 0,
-    id: '',
-  }],
+  chatrooms: [],
   selectedChatroomIndex: -1,
 };
 
