@@ -6,7 +6,12 @@ import { Container } from './styles';
 import { StoreState } from '../../../../../redux/interface';
 import { selectChatroom } from '../../../../../redux/Chatrooms/action';
 
-const UserGroups: React.FC = () => {
+interface Props {
+  isShowing: boolean
+}
+
+const UserGroups: React.FC<Props> = (props: Props) => {
+  const { isShowing } = props;
   const { ChatroomsReducer } = useSelector((state: StoreState) => state);
   const dispatch = useDispatch();
 
@@ -30,7 +35,7 @@ const UserGroups: React.FC = () => {
     }));
   };
 
-  return (
+  return isShowing ? (
     <Container>
       <Button
         text="Novo Grupo"
@@ -39,7 +44,7 @@ const UserGroups: React.FC = () => {
         groups={createChatroomsResume()}
       />
     </Container>
-  );
+  ) : null;
 };
 
 export default memo(UserGroups);
