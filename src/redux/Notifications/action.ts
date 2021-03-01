@@ -1,7 +1,7 @@
 import { NotificationActionTypes } from './actionTypes';
 import { GroupInviteNotification } from './interface';
 
-export const LoadNotifications = (payload: Array<GroupInviteNotification>) => ({
+export const loadNotifications = (payload: Array<GroupInviteNotification>) => ({
   type: NotificationActionTypes.LOAD_NOTIFICATIONS,
   payload,
 });

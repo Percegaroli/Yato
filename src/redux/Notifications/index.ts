@@ -11,14 +11,16 @@ const initialState: NotificationState = {
 };
 
 const NotificationReducer = (state = initialState, action: Action): NotificationState => {
-  switch (action.payload) {
+  switch (action.type) {
     case NotificationActionTypes.LOAD_NOTIFICATIONS: {
       return {
+        ...state,
         groupInvite: action.payload,
       };
     }
     case NotificationActionTypes.REMOVE_NOTIFICATION: {
       return {
+        ...state,
         groupInvite: state.groupInvite.filter((invite) => invite.id !== action.payload),
       };
     }
@@ -26,6 +28,7 @@ const NotificationReducer = (state = initialState, action: Action): Notification
       const newGroupInvites = [...state.groupInvite];
       newGroupInvites.push(action.payload);
       return {
+        ...state,
         groupInvite: newGroupInvites,
       };
     }

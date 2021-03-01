@@ -1,17 +1,22 @@
 import { decode } from 'jsonwebtoken';
 import {
-  LoginResponse, ChatroomResponse, UserResponse, MemberResumeDTO, MessageDTO,
+  LoginResponse, ChatroomResponse, UserResponse, MemberResumeDTO, NotificacaoDTO,
 } from './interface/LoginResponse';
-import { ChatroomState, Members, Message } from '../../redux/Chatrooms/interface';
+import { ChatroomState, Members } from '../../redux/Chatrooms/interface';
 import { UserState } from '../../redux/User/interface';
 import { mapearNovasMensagensRedux } from '../chatrooms/Messages';
+import { GroupInviteNotification } from '../../redux/Notifications/interface';
 
 export const mapearRespostaApiRedux = (resposta: LoginResponse):
-[UserState, Array<ChatroomState>] => {
+[UserState, Array<ChatroomState>, Array<GroupInviteNotification>] => {
   const { user } = resposta;
-  const { chatrooms } = user;
+  const { chatrooms, groupInvitations } = user;
   const token: any = decode(resposta.token);
-  return [mapearDadosUsuario(user, token.id), mapearDadosChatrooms(chatrooms)];
+  return [
+    mapearDadosUsuario(user, token.id),
+    mapearDadosChatrooms(chatrooms),
+    mapearDadosNotificacoes(groupInvitations),
+  ];
 };
 
 const mapearDadosUsuario = (userResponse: UserResponse, id: string): UserState => {
@@ -51,5 +56,17 @@ const mapearDadosMembroChatroom = (membro: MemberResumeDTO): Members => {
     role,
   };
 };
+
+export const mapearDadosNotificacoes = (
+  notificacoes: Array<NotificacaoDTO>,
+): Array<GroupInviteNotification> => notificacoes.map((notificacao, index) => {
+  const { group, invitationDate, user } = notificacao;
+  return {
+    id: index,
+    group,
+    invitationDate,
+    user,
+  };
+});
 
 export default {};

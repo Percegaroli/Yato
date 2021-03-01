@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MdPerson, MdGroup, MdPowerSettingsNew } from 'react-icons/md';
+import { MdNotifications, MdGroup, MdPowerSettingsNew } from 'react-icons/md';
 import { IconInterface } from '../../../../interfaces/IconInterface';
 
 export const Container = styled.div`
@@ -8,7 +8,7 @@ export const Container = styled.div`
   margin-top: 25px;
 `;
 
-export const PersonIcon = styled(MdPerson)<IconInterface>`
+export const NotificationsIcon = styled(MdNotifications)<IconInterface>`
   color: ${(props) => (props.selected ? '#FFD369' : '#888B8F')};
   font-size: 28px;
 `;

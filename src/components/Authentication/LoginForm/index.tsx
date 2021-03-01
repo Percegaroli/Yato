@@ -7,6 +7,7 @@ import { login } from '../../../service/autenticacao';
 import { mapearRespostaApiRedux } from '../../../service/autenticacao/mapearRespostaAPI';
 import { changeUserState } from '../../../redux/User/action';
 import { loadChatrooms } from '../../../redux/Chatrooms/action';
+import { loadNotifications } from '../../../redux/Notifications/action';
 import { salvarDadoLocalStorage } from '../../../config/localStorage';
 import { LocalStorageFields } from '../../../enum/localStorage/fields';
 
@@ -31,10 +32,11 @@ const Login: React.FC = () => {
     try {
       const response = await login(loginFormState);
       const { data } = response;
-      const [userState, chatroomsState] = mapearRespostaApiRedux(data);
+      const [userState, chatroomsState, notificationState] = mapearRespostaApiRedux(data);
       salvarTokenLocalStorage(data.token);
       dispatch(changeUserState(userState));
       dispatch(loadChatrooms(chatroomsState));
+      dispatch(loadNotifications(notificationState));
       router.push('/');
     } catch (error) {
       console.log('Ainda não implementado');

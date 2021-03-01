@@ -1,12 +1,18 @@
 import { UserDetailsDTO } from './interface/UserDetailsDTO';
 import { ChatroomState, Members, Message } from '../../redux/Chatrooms/interface';
 import { UserState } from '../../redux/User/interface';
+import { GroupInviteNotification } from '../../redux/Notifications/interface';
 import { ChatroomDetailsDTO, GroupMemberDTO, MessageDTO } from './interface/ChatroomDetailsDTO';
+import { mapearDadosNotificacoes } from '../autenticacao/mapearRespostaAPI';
 
 export const mapearRespostaApiRedux = (resposta: UserDetailsDTO):
-[UserState, Array<ChatroomState>] => {
-  const { chatrooms } = resposta;
-  return [mapearDadosUsuario(resposta), mapearDadosChatrooms(chatrooms)];
+[UserState, Array<ChatroomState>, Array<GroupInviteNotification>] => {
+  const { chatrooms, groupInvitations } = resposta;
+  return [
+    mapearDadosUsuario(resposta),
+    mapearDadosChatrooms(chatrooms),
+    mapearDadosNotificacoes(groupInvitations),
+  ];
 };
 
 const mapearDadosUsuario = (userDetails: UserDetailsDTO): UserState => {

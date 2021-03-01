@@ -15,9 +15,7 @@ export const TextContainer = styled.h2`
   font-size: 14px;
   line-height: 16px;
   color: #B5B5B5;
-  text-align: center;
   margin-bottom: 11px;
-  
 `;
 
 export const Emphasis = styled.div`
@@ -39,8 +37,12 @@ export const ActionButton = styled.button<ActionButtonProps>`
   width: 22px;
   height: 18px;
   border-radius: 4px;
+  border: none;
   box-shadow: 0px 2px 2px #181D24;
-  background-color: ${(props) => (props.variant === 'cancel' ? '#99565A' : '#6E775B')}
+  background-color: ${(props) => (props.variant === 'cancel' ? '#99565A' : '#6E775B')};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ButtonsContainer = styled.div`

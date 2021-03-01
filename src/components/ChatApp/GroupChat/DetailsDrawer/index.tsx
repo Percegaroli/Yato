@@ -11,7 +11,7 @@ interface Props {
 
 const DetailsDrawer: React.FC<Props> = (props: Props) => {
   const { isShowing, close } = props;
-  return isShowing || true ? (
+  return isShowing ? (
     <DrawerContailer>
       <Close onClick={close} />
       <ContentContainer>

@@ -4,28 +4,29 @@ import UseFullDate from '../../../hooks/UseFullDate';
 import {
   Card, TextContainer, Emphasis, Section, Data, ActionButton, ButtonsContainer,
 } from './styles';
-
-interface User {
-  userId: string,
-  name: string,
-  lastName: string
-}
-
-interface Group {
-  groupId: string,
-  groupName: string
-}
+import { GroupInviteNotificationGroup, GroupInviteNotificationUser } from '../../../redux/Notifications/interface';
 
 interface Props {
-  user: User,
-  group: Group,
+  user: GroupInviteNotificationUser,
+  group: GroupInviteNotificationGroup,
   inviteDate: Date
+  onAction: () => void
 }
 
 const GroupInviteNotificationCard: React.FC<Props> = (props: Props) => {
-  const { user, group, inviteDate } = props;
-  const invitationDate = UseFullDate(new Date(inviteDate));
+  const {
+    user, group, inviteDate, onAction,
+  } = props;
+  const invitationDate = UseFullDate(new Date(inviteDate), { withHours: true });
 
+  const answerInvitation = (accepted: boolean) => {
+    try {
+      console.log('ainda não implementado', accepted);
+      onAction();
+    } catch (error) {
+      console.log('ainda não implementado');
+    }
+  };
   const renderText = () => {
     const { name, lastName } = user;
     const fullName = `${name} ${lastName}`;
@@ -36,7 +37,7 @@ const GroupInviteNotificationCard: React.FC<Props> = (props: Props) => {
         </Emphasis>
         convidou você para participar do grupo
         <Emphasis>
-          {group.groupName}
+          {group.name}
         </Emphasis>
       </TextContainer>
     );
@@ -51,13 +52,13 @@ const GroupInviteNotificationCard: React.FC<Props> = (props: Props) => {
         </Data>
         <ButtonsContainer>
           <ActionButton
-            onClick={() => {}}
+            onClick={() => answerInvitation(false)}
             variant="cancel"
           >
             <MdClose />
           </ActionButton>
           <ActionButton
-            onClick={() => {}}
+            onClick={() => answerInvitation(true)}
             variant="confirm"
           >
             <MdCheck />
