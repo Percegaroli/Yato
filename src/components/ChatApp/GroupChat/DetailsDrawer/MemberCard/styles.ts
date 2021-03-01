@@ -36,3 +36,7 @@ export const MemberProfile = styled.div`
   text-decoration-line: underline;
   color: #EEEEEE;
 `;
+
+export const BadgeContainer = styled.div`
+  display: flex;
+`;

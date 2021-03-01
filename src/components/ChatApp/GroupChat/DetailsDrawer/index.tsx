@@ -1,10 +1,8 @@
 import React from 'react';
-import Button from '../../../UI/Button';
 import Divisor from '../../../UI/Divisor';
+import InviteMemberSection from './InviteMemberSection';
 import MembersList from './MembersList';
-import {
-  DescriptionContainer, Text, DrawerContailer, Close, ContentContainer, Title,
-} from './styles';
+import { DrawerContailer, Close, ContentContainer } from './styles';
 
 interface Props {
   isShowing: boolean,
@@ -13,29 +11,16 @@ interface Props {
 
 const DetailsDrawer: React.FC<Props> = (props: Props) => {
   const { isShowing, close } = props;
-  return (
+  return isShowing || true ? (
     <DrawerContailer>
-      <Close />
+      <Close onClick={close} />
       <ContentContainer>
-        <Title>
-          Convidar um novo membro
-        </Title>
-        <Button
-          text="Gerar Link"
-        />
-        <DescriptionContainer>
-          <Text>
-            Para convidar um novo membro, pressione o botão acima para gerar um novo link.
-          </Text>
-          <Text>
-            Em seguida, copie o link gerado e envie para a pessoa
-          </Text>
-        </DescriptionContainer>
+        <InviteMemberSection />
         <Divisor orientation="horizontal" />
         <MembersList />
       </ContentContainer>
     </DrawerContailer>
-  );
+  ) : <></>;
 };
 
 export default DetailsDrawer;

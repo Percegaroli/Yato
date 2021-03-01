@@ -9,6 +9,15 @@ const MembersList: React.FC = () => {
     (state: StoreState) => state.ChatroomsReducer,
   );
 
+  const renderMembersQuantity = () => {
+    const quantity = chatrooms[selectedChatroomIndex].members.length;
+    return (
+      <MembersQuantity>
+        {`${quantity} ${quantity === 1 ? 'Member' : 'Members'}`}
+      </MembersQuantity>
+    );
+  };
+
   const renderMembersList = () => chatrooms[selectedChatroomIndex].members.map((member) => (
     <MemberCard
       fullName={`${member.name} ${member.lastName}`}
@@ -21,12 +30,8 @@ const MembersList: React.FC = () => {
 
   return (
     <Container>
-      <MembersQuantity>
-        {chatrooms[selectedChatroomIndex].members.length}
-        {' '}
-        Membros
-      </MembersQuantity>
-      {renderMembersList}
+      {renderMembersQuantity()}
+      {renderMembersList()}
     </Container>
   );
 };
