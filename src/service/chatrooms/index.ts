@@ -1,15 +1,23 @@
 import { api } from '../../config/api';
-import { recuperarDadoLocalStorage } from '../../config/localStorage';
-import { LocalStorageFields } from '../../enum/localStorage/fields';
-import { InviteNewMemberRequestBody } from './interface';
+import { ApiConfigFactory } from '../../config/ApiConfigFactory';
+import { ChatroomResponse, InviteNewMemberRequestBody, ResponderConviteGrupoBody } from './interface';
 
-export const inviteNewMemberToGroupByEmail = (body: InviteNewMemberRequestBody) => {
-  const token = recuperarDadoLocalStorage(LocalStorageFields.token);
-  return api.post('/chatroom/invite', body, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-};
+const returnAuthenticatedConfig = () => ApiConfigFactory({
+  headers: {
+    auth: true,
+  },
+});
+
+export const inviteNewMemberToGroupByEmail = (body: InviteNewMemberRequestBody) => api.post('/chatroom/invite', body, returnAuthenticatedConfig());
+
+export const getChatroomDetails = (id: string) => api.get<ChatroomResponse>(`/chatroom/${id}`, returnAuthenticatedConfig());
+
+export const answerChatroomInvitation = (
+  body: ResponderConviteGrupoBody, accepted: boolean,
+) => (accepted ? acceptChatroomInvitation(body) : rejectChatroomInvitation(body));
+
+const acceptChatroomInvitation = (body: ResponderConviteGrupoBody) => api.post('/chatroom/invitation/accept', body, returnAuthenticatedConfig());
+
+const rejectChatroomInvitation = (body: ResponderConviteGrupoBody) => api.post('/chatroom/invitation/reject', body, returnAuthenticatedConfig());
 
 export default {};

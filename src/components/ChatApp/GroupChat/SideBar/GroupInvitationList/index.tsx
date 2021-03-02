@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StoreState } from '../../../../../redux/interface';
 import GroupInviteNotificationCard from '../../../../UI/GroupInviteNotificationCard';
 import { Container } from './styles';
-import { removeNotification } from '../../../../../redux/Notifications/action';
+import { removeNotification, loadNotifications } from '../../../../../redux/Notifications/action';
+import { GroupInviteNotification } from '../../../../../redux/Notifications/interface';
 
 interface Props {
   isShowing: boolean;
@@ -11,20 +12,32 @@ interface Props {
 
 const GroupInvitationList: React.FC<Props> = (props: Props) => {
   const { isShowing } = props;
-  const { groupInvite } = useSelector((state: StoreState) => state.NotificationsReducer);
+  const { NotificationsReducer, UserReducer } = useSelector((state: StoreState) => state);
   const dispatch = useDispatch();
 
-  const removeInvitationFromRedux = (id: number) => {
-    dispatch(removeNotification(id));
+  const removeInvitationFromRedux = (
+    invite: GroupInviteNotification,
+    invitationAccepted: boolean,
+  ) => {
+    if (invitationAccepted) {
+      const novasNotificacoes = NotificationsReducer.groupInvite.filter(
+        (invitationRedux) => !(invitationRedux.group.id === invite.group.id
+        && invite.user.id === invitationRedux.user.id),
+      );
+      dispatch(loadNotifications(novasNotificacoes));
+    } else {
+      dispatch(removeNotification(invite.id));
+    }
   };
 
-  const renderGroupInvitationCards = () => groupInvite.map((invite) => (
+  const renderGroupInvitationCards = () => NotificationsReducer.groupInvite.map((invite) => (
     <GroupInviteNotificationCard
       inviteDate={invite.invitationDate}
       group={invite.group}
       user={invite.user}
       key={`${invite.group} ${invite.id}`}
-      onAction={() => removeInvitationFromRedux(invite.id)}
+      onAction={(accepted: boolean) => removeInvitationFromRedux(invite, accepted)}
+      thisUserId={UserReducer.id}
     />
   ));
 

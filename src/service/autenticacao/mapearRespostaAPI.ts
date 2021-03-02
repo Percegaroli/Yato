@@ -1,11 +1,9 @@
 import { decode } from 'jsonwebtoken';
-import {
-  LoginResponse, ChatroomResponse, UserResponse, MemberResumeDTO, NotificacaoDTO,
-} from './interface/LoginResponse';
-import { ChatroomState, Members } from '../../redux/Chatrooms/interface';
+import { LoginResponse, UserResponse, NotificacaoDTO } from './interface/LoginResponse';
+import { ChatroomState } from '../../redux/Chatrooms/interface';
 import { UserState } from '../../redux/User/interface';
-import { mapearNovasMensagensRedux } from '../chatrooms/Messages';
 import { GroupInviteNotification } from '../../redux/Notifications/interface';
+import { mapearDadosChatrooms } from '../chatrooms/mapearRespostaAPI';
 
 export const mapearRespostaApiRedux = (resposta: LoginResponse):
 [UserState, Array<ChatroomState>, Array<GroupInviteNotification>] => {
@@ -29,31 +27,6 @@ const mapearDadosUsuario = (userResponse: UserResponse, id: string): UserState =
     photo,
     name,
     lastName,
-  };
-};
-
-const mapearDadosChatrooms = (chatroomsResponse: Array<ChatroomResponse>):
-Array<ChatroomState> => chatroomsResponse.map((chatroom) => ({
-  id: chatroom.id,
-  members: chatroom.members.map((member) => mapearDadosMembroChatroom(member)),
-  messages: mapearNovasMensagensRedux([], chatroom.messages),
-  name: chatroom.name,
-  photo: chatroom.photo,
-  newMessages: 0,
-}));
-
-const mapearDadosMembroChatroom = (membro: MemberResumeDTO): Members => {
-  const { joinedAt, role, user } = membro;
-  const {
-    name, lastName, id, photo,
-  } = user;
-  return {
-    id,
-    lastName,
-    name,
-    photo,
-    memberSince: joinedAt,
-    role,
   };
 };
 

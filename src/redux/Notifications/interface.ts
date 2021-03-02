@@ -10,6 +10,7 @@ export interface GroupInviteNotification {
 }
 
 export interface GroupInviteNotificationUser {
+  id: string;
   name: string,
   lastName: string
 }

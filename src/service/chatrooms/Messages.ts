@@ -1,5 +1,5 @@
 import { Message } from '../../redux/Chatrooms/interface';
-import { MessageDTO } from '../autenticacao/interface/LoginResponse';
+import { MessageDTO } from './interface';
 
 export const mapearNovasMensagensRedux = (
   mensagensExistentes: Array<Message>,
