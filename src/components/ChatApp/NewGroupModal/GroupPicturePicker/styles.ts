@@ -32,3 +32,10 @@ export const ImageIcon = styled(MdImage)`
   width: 25px;
   height: 25px;
 `;
+
+export const Image = styled.img`
+  width: 135px;
+  height: 135px;
+  border-radius: 100%;
+  background-size: contain;
+`;

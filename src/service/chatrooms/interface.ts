@@ -40,3 +40,17 @@ export interface MemberUserInfo {
   email: string,
   photo?: string
 }
+
+export interface CreateNewGroupDTO {
+  name: string;
+  'owner_id': string;
+  isPrivate: boolean;
+}
+
+export interface NewGroupResponseDTO {
+  id: string;
+}
+
+export interface ChangeGroupPictureResponseDTO{
+  photoUrl: string;
+}
