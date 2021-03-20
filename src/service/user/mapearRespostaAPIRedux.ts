@@ -11,12 +11,12 @@ export const mapearRespostaApiRedux = (resposta: UserDetailsDTO):
 
 const mapearDadosUsuario = (userDetails: UserDetailsDTO): UserState => {
   const {
-    email, photo, name, lastName, id,
+    email, photoUrl, name, lastName, id,
   } = userDetails;
   return {
     id,
     email,
-    photo,
+    photo: photoUrl ?? '/images/image-analysis.png',
     name,
     lastName,
   };
@@ -40,14 +40,14 @@ Array<ChatroomState> => chatroomsResponse.map((chatroom) => {
 const mapearDadosMembro = (member: GroupMemberDTO): Members => {
   const { joinedAt, role, user } = member;
   const {
-    id, lastName, name, photo,
+    id, lastName, name, photoUrl,
   } = user;
   return {
     id,
     lastName,
     memberSince: joinedAt,
     name,
-    photo,
+    photo: photoUrl,
     role,
   };
 };

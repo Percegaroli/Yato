@@ -8,7 +8,6 @@ import {
   MemberProfile,
   BadgeContainer,
 } from './styles';
-import { Roles } from '../../../../../enum/Group/Roles';
 import ProfilePicture from '../../../../UI/ProfilePicture';
 import RoleBadge from '../../../../UI/RoleBadge';
 import UseFullDate from '../../../../../hooks/UseFullDate';

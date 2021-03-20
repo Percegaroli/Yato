@@ -6,7 +6,7 @@ const initialState: UserState = {
   id: '',
   lastName: '',
   name: '',
-  photo: '',
+  photo: '/images/image-analysis.png',
 };
 
 const UserReducer = (state = initialState, action: any) => {

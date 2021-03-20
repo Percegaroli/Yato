@@ -10,7 +10,7 @@ export interface UserResponse {
   name: string,
   lastName: string,
   email: string,
-  photo?: string,
+  photoUrl?: string,
   chatrooms: Array<ChatroomResponse>
 }
 
@@ -28,7 +28,7 @@ export interface MemberUserInfo {
   name: string,
   lastName: string,
   email: string,
-  photo?: string
+  photoUrl?: string
 }
 
 export interface MemberResumeDTO {

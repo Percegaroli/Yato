@@ -1,8 +1,8 @@
 import { decode } from 'jsonwebtoken';
 import {
-  LoginResponse, ChatroomResponse, UserResponse, MemberResumeDTO, MessageDTO,
+  LoginResponse, ChatroomResponse, UserResponse, MemberResumeDTO,
 } from './interface/LoginResponse';
-import { ChatroomState, Members, Message } from '../../redux/Chatrooms/interface';
+import { ChatroomState, Members } from '../../redux/Chatrooms/interface';
 import { UserState } from '../../redux/User/interface';
 import { mapearNovasMensagensRedux } from '../chatrooms/Messages';
 
@@ -16,12 +16,12 @@ export const mapearRespostaApiRedux = (resposta: LoginResponse):
 
 const mapearDadosUsuario = (userResponse: UserResponse, id: string): UserState => {
   const {
-    email, photo, name, lastName,
+    email, photoUrl, name, lastName,
   } = userResponse;
   return {
     id,
     email,
-    photo,
+    photo: photoUrl,
     name,
     lastName,
   };
@@ -40,13 +40,13 @@ Array<ChatroomState> => chatroomsResponse.map((chatroom) => ({
 const mapearDadosMembroChatroom = (membro: MemberResumeDTO): Members => {
   const { joinedAt, role, user } = membro;
   const {
-    name, lastName, id, photo,
+    name, lastName, id, photoUrl,
   } = user;
   return {
     id,
     lastName,
     name,
-    photo,
+    photo: photoUrl,
     memberSince: joinedAt,
     role,
   };

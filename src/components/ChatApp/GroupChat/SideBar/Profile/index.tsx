@@ -2,10 +2,14 @@ import React from 'react';
 import ProfilePicture from '../../../../UI/ProfilePicture';
 import { Container, Settings } from './styles';
 
-const Profile: React.FC = () => (
+interface Props {
+  pictureSource?: string
+}
+
+const Profile: React.FC<Props> = ({ pictureSource }) => (
   <Container>
     <ProfilePicture
-      src="/images/image-analysis.png"
+      src={pictureSource}
       alt="aaa"
       width={146}
       height={146}
@@ -13,5 +17,9 @@ const Profile: React.FC = () => (
     <Settings />
   </Container>
 );
+
+Profile.defaultProps = {
+  pictureSource: '/images/image-analysis.png',
+};
 
 export default Profile;

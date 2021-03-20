@@ -6,5 +6,5 @@ export interface UserDetailsDTO {
   email: string,
   chatrooms: Array<ChatroomDetailsDTO>,
   id: string,
-  photo?: string
+  photoUrl?: string
 }

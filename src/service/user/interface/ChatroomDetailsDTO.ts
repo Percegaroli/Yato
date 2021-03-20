@@ -18,7 +18,7 @@ export interface GroupMemberDTO {
 export interface UserResumeDTO {
   id: string;
   name: string;
-  photo?: string;
+  photoUrl?: string;
   lastName: string;
   email: string;
 }
