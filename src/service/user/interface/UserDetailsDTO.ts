@@ -1,4 +1,5 @@
 import { ChatroomDetailsDTO } from './ChatroomDetailsDTO';
+import { NotificacaoDTO } from '../../autenticacao/interface/LoginResponse';
 
 export interface UserDetailsDTO {
   name: string,
@@ -6,5 +7,6 @@ export interface UserDetailsDTO {
   email: string,
   chatrooms: Array<ChatroomDetailsDTO>,
   id: string,
-  photoUrl?: string
+  photoUrl?: string,
+  groupInvitations: Array<NotificacaoDTO>
 }

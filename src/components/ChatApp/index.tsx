@@ -13,6 +13,7 @@ import { recuperarDadoLocalStorage, isTokenExpirado, removerCampoLocalStorage } 
 import { LocalStorageFields } from '../../enum/localStorage/fields';
 import { mapearRespostaApiRedux } from '../../service/user/mapearRespostaAPIRedux';
 import { changeUserState } from '../../redux/User/action';
+import { loadNotifications } from '../../redux/Notifications/action';
 import { loadChatrooms, addNewMessage } from '../../redux/Chatrooms/action';
 import { Events } from '../../enum/socket/events';
 import { NewMessageReceivedParameters } from '../../interfaces/SocketEvents';
@@ -42,9 +43,10 @@ const ChatApp: React.FC = () => {
     try {
       const tokenDecoded: any = decode(token);
       const { data } = await getUserDetails(tokenDecoded.id);
-      const [userState, chatroomState] = mapearRespostaApiRedux(data);
+      const [userState, chatroomState, notificationState] = mapearRespostaApiRedux(data);
       dispatch(changeUserState(userState));
       dispatch(loadChatrooms(chatroomState));
+      dispatch(loadNotifications(notificationState));
     } catch (error) {
       console.log('não implementado');
     }

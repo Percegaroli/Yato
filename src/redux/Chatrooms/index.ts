@@ -20,6 +20,14 @@ const ChatroomsReducer = (state = initialState, action: any): ChatroomsState => 
         selectedChatroomIndex: action.payload,
       };
     }
+    case ChatroomsActionTypes.JOIN_CHATROOM: {
+      const chatrooms = [...state.chatrooms];
+      chatrooms.push(action.payload);
+      return {
+        ...state,
+        chatrooms,
+      };
+    }
     case ChatroomsActionTypes.ADD_NEW_MESSAGE: {
       const { chatrooms } = state;
       const index = chatrooms.findIndex((chatroom) => chatroom.id === action.payload.chatId);

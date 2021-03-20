@@ -20,4 +20,9 @@ export const addNewMessage = (newMessage: NewMessagePayload) => ({
   },
 });
 
+export const joinChatroom = (payload: ChatroomState) => ({
+  type: ChatroomsActionTypes.JOIN_CHATROOM,
+  payload,
+});
+
 export default {};

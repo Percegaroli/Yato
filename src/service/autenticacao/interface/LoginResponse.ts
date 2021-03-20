@@ -1,4 +1,6 @@
 import { Roles } from '../../../enum/Group/Roles';
+import { GroupInviteNotificationUser, GroupInviteNotificationGroup } from '../../../redux/Notifications/interface';
+import { ChatroomResponse } from '../../chatrooms/interface';
 
 export interface LoginResponse {
   token: string,
@@ -11,16 +13,8 @@ export interface UserResponse {
   lastName: string,
   email: string,
   photoUrl?: string,
-  chatrooms: Array<ChatroomResponse>
-}
-
-export interface ChatroomResponse {
-  id: string,
-  members: Array<MemberResumeDTO>,
-  messages: Array<MessageDTO>,
-  name: string,
-  createdAt: Date,
-  photo?: string
+  chatrooms: Array<ChatroomResponse>,
+  groupInvitations: Array<NotificacaoDTO>
 }
 
 export interface MemberUserInfo {
@@ -41,4 +35,10 @@ export interface MessageDTO {
   date: Date,
   message: string,
   'user_id': string
+}
+
+export interface NotificacaoDTO {
+  user: GroupInviteNotificationUser,
+  group: GroupInviteNotificationGroup,
+  invitationDate: Date
 }
