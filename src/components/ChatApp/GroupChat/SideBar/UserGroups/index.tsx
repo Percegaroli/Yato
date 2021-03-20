@@ -1,10 +1,11 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '../../../../UI/Button';
 import GroupList from '../GroupList';
 import { Container } from './styles';
 import { StoreState } from '../../../../../redux/interface';
 import { selectChatroom } from '../../../../../redux/Chatrooms/action';
+import NewGroupModal from '../../../NewGroupModal';
 
 interface Props {
   isShowing: boolean
@@ -13,6 +14,7 @@ interface Props {
 const UserGroups: React.FC<Props> = (props: Props) => {
   const { isShowing } = props;
   const { ChatroomsReducer } = useSelector((state: StoreState) => state);
+  const [showingNewGroupModal, setShowingNewGroupModal] = useState(false);
   const dispatch = useDispatch();
 
   const alterarChatroomSelecionado = (index: number) => {
@@ -36,14 +38,21 @@ const UserGroups: React.FC<Props> = (props: Props) => {
   };
 
   return isShowing ? (
-    <Container>
-      <Button
-        text="Novo Grupo"
+    <>
+      <Container>
+        <Button
+          text="Novo Grupo"
+          onClick={() => setShowingNewGroupModal(true)}
+        />
+        <GroupList
+          groups={createChatroomsResume()}
+        />
+      </Container>
+      <NewGroupModal
+        isShowing={showingNewGroupModal}
+        close={() => setShowingNewGroupModal(false)}
       />
-      <GroupList
-        groups={createChatroomsResume()}
-      />
-    </Container>
+    </>
   ) : null;
 };
 

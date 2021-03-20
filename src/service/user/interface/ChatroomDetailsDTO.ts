@@ -3,7 +3,7 @@ import { Roles } from '../../../enum/Group/Roles';
 export interface ChatroomDetailsDTO {
   id: string;
   name: string;
-  photo?: string;
+  photoUrl?: string;
   members: Array<GroupMemberDTO>;
   createdAt: Date;
   messages: Array<MessageDTO>;

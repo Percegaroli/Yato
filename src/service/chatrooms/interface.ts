@@ -18,7 +18,7 @@ export interface ChatroomResponse {
   messages: Array<MessageDTO>,
   name: string,
   createdAt: Date,
-  photo?: string
+  photoUrl?: string
 }
 
 export interface MemberResumeDTO {
@@ -39,4 +39,18 @@ export interface MemberUserInfo {
   lastName: string,
   email: string,
   photo?: string
+}
+
+export interface CreateNewGroupDTO {
+  name: string;
+  'owner_id': string;
+  isPrivate: boolean;
+}
+
+export interface NewGroupResponseDTO {
+  id: string;
+}
+
+export interface ChangeGroupPictureResponseDTO{
+  photoUrl: string;
 }

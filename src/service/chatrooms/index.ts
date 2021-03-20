@@ -1,12 +1,29 @@
 import { api } from '../../config/api';
 import { ApiConfigFactory } from '../../config/ApiConfigFactory';
-import { ChatroomResponse, InviteNewMemberRequestBody, ResponderConviteGrupoBody } from './interface';
+import {
+  ChangeGroupPictureResponseDTO,
+  ChatroomResponse,
+  CreateNewGroupDTO,
+  InviteNewMemberRequestBody,
+  NewGroupResponseDTO,
+  ResponderConviteGrupoBody,
+} from './interface';
 
 const returnAuthenticatedConfig = () => ApiConfigFactory({
   headers: {
     auth: true,
   },
 });
+
+export const createNewGroup = (body: CreateNewGroupDTO) => {
+  const config = returnAuthenticatedConfig();
+  return api.post<NewGroupResponseDTO>('/chatroom', body, config);
+};
+
+export const changeGroupPicture = (body: FormData, groupId: string) => {
+  const config = returnAuthenticatedConfig();
+  return api.patch<ChangeGroupPictureResponseDTO>(`/chatroom/${groupId}/photo`, body, config);
+};
 
 export const inviteNewMemberToGroupByEmail = (body: InviteNewMemberRequestBody) => api.post('/chatroom/invite', body, returnAuthenticatedConfig());
 

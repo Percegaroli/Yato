@@ -5,12 +5,12 @@ interface ModalProps {
   isShowing: boolean
   closeModal: () => void
   children: React.ReactNode,
-  modalClassName?: string
+  className?: string
 }
 
 const Modal: React.FC<ModalProps> = (props: ModalProps) => {
   const {
-    closeModal, children, isShowing, modalClassName,
+    closeModal, children, isShowing, className,
   } = props;
 
   return isShowing
@@ -19,7 +19,7 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
         <Overlay onClick={closeModal} />
         <ModalCard
           onClick={(event: React.MouseEvent) => event.stopPropagation()}
-          className={modalClassName}
+          className={className}
         >
           {children}
         </ModalCard>
@@ -29,7 +29,7 @@ const Modal: React.FC<ModalProps> = (props: ModalProps) => {
 };
 
 Modal.defaultProps = {
-  modalClassName: '',
+  className: '',
 };
 
 export default Modal;
