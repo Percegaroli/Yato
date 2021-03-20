@@ -3,10 +3,7 @@ import { MdSend } from 'react-icons/md';
 import { Input } from '../../../UI/InputField/styles';
 
 export const Container = styled.div`
-  position: absolute;
   width: 100%;
-  bottom: 0;
-  right: 0;
   padding: 34px 42px;
   display: flex;
 

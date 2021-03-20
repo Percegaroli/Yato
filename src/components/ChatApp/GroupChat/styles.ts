@@ -7,5 +7,6 @@ export const Container = styled.div`
 `;
 
 export const MessagesContainer = styled.div`
-
+  width: 100%;
+  height: calc(100vh - (124px + 2px + 112px));
 `;

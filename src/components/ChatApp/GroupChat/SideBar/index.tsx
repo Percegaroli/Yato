@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Container } from './styles';
+import { Container, HeaderContainer } from './styles';
 import Profile from './Profile';
 import Categories from './Categories';
 import UserGroups from './UserGroups';
@@ -25,11 +25,13 @@ const SideBar: React.FC = () => {
 
   return (
     <Container>
-      <Profile pictureSource={photo} />
-      <Categories
-        selectCategory={changeSelectedCategory}
-        selectedCategory={selectedCategory}
-      />
+      <HeaderContainer>
+        <Profile pictureSource={photo} />
+        <Categories
+          selectCategory={changeSelectedCategory}
+          selectedCategory={selectedCategory}
+        />
+      </HeaderContainer>
       <UserGroups isShowing={selectedCategory.userGroups} />
       <GroupInvitationlist isShowing={selectedCategory.notification} />
     </Container>
