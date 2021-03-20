@@ -8,7 +8,7 @@ Array<ChatroomState> => chatroomsResponse.map((chatroom) => ({
   members: chatroom.members.map((member) => mapearDadosMembroChatroom(member)),
   messages: mapearNovasMensagensRedux([], chatroom.messages),
   name: chatroom.name,
-  photo: chatroom.photo,
+  photo: chatroom.photoUrl,
   newMessages: 0,
 }));
 

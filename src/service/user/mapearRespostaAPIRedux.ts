@@ -31,13 +31,13 @@ const mapearDadosUsuario = (userDetails: UserDetailsDTO): UserState => {
 const mapearDadosChatrooms = (chatroomsResponse: Array<ChatroomDetailsDTO>):
 Array<ChatroomState> => chatroomsResponse.map((chatroom) => {
   const {
-    id, messages, name, photo, members,
+    id, messages, name, photoUrl, members,
   } = chatroom;
   return {
     members: members.map((member) => mapearDadosMembro(member)),
     messages: mapearMensagens(messages),
     name,
-    photo,
+    photo: photoUrl,
     id,
     newMessages: 0,
   };

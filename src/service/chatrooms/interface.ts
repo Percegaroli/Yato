@@ -18,7 +18,7 @@ export interface ChatroomResponse {
   messages: Array<MessageDTO>,
   name: string,
   createdAt: Date,
-  photo?: string
+  photoUrl?: string
 }
 
 export interface MemberResumeDTO {
